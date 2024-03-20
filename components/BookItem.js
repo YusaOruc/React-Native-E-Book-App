@@ -1,11 +1,13 @@
-import { View, FlatList, Image, StyleSheet, Text } from "react-native";
+import { View, TouchableOpacity, Image, StyleSheet, Text } from "react-native";
 import { TextComponent } from "./TextComponent";
 
 const BookItem = ({ item }) => (
   <View style={{ ...styles.card }}>
-    <Image source={item.path} style={styles.avatar} />
-    <TextComponent>{item.name}</TextComponent>
-    <TextComponent style={{ ...styles.span }}>{item.author}</TextComponent>
+    <TouchableOpacity onPress={() => console.log("1df")}>
+      <Image source={item.path} style={styles.avatar} />
+      <TextComponent>{item.name}</TextComponent>
+      <TextComponent style={{ ...styles.span }}>{item.author}</TextComponent>
+    </TouchableOpacity>
   </View>
 );
 

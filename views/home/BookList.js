@@ -38,7 +38,7 @@ const BookList = () => {
       horizontal
       renderItem={BookItem}
       keyExtractor={(item, index) => index.toString()}
-      contentContainerStyle={styles.container}
+      contentContainerStyle={{ padding: 5 }}
       showsHorizontalScrollIndicator={false} // Scroll bar'ı gizler
     />
   );
@@ -46,7 +46,7 @@ const BookList = () => {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 15,
+    padding: 5,
   },
 });
 

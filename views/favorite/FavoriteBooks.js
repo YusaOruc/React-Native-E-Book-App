@@ -34,12 +34,12 @@ const dummyData = [
 
 const FavoriteBooks = () => {
   return (
-    <ViewComponent>
+    <ViewComponent style={styles.container}>
       <FlatList
         data={dummyData}
         renderItem={BookItem}
         keyExtractor={(item, index) => index.toString()}
-        contentContainerStyle={styles.container}
+        contentContainerStyle={{ padding: 5 }}
         showsHorizontalScrollIndicator={false} // Scroll bar'ı gizler
         numColumns={2}
       />
@@ -49,7 +49,8 @@ const FavoriteBooks = () => {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 15,
+    flex: 1,
+    padding: 10,
   },
 });
 

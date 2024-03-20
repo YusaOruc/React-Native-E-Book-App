@@ -47,7 +47,7 @@ export default function BottomNavigation() {
           tabBarStyle: {
             backgroundColor: getTheme().bottomNavigation, // Arka plan rengi
           },
-          tabBarActiveTintColor: "#D45555",
+          tabBarActiveTintColor: "#F38181",
         })}
       >
         <Tab.Screen name="Home" component={Home} />
