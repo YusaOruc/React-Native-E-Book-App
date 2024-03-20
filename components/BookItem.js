@@ -2,13 +2,13 @@ import { View, TouchableOpacity, Image, StyleSheet, Text } from "react-native";
 import { TextComponent } from "./TextComponent";
 
 const BookItem = ({ item }) => (
-  <View style={{ ...styles.card }}>
-    <TouchableOpacity onPress={() => console.log("1df")}>
+  <TouchableOpacity onPress={() => console.log("1df")}>
+    <View style={{ ...styles.card }}>
       <Image source={item.path} style={styles.avatar} />
       <TextComponent>{item.name}</TextComponent>
       <TextComponent style={{ ...styles.span }}>{item.author}</TextComponent>
-    </TouchableOpacity>
-  </View>
+    </View>
+  </TouchableOpacity>
 );
 
 const styles = StyleSheet.create({
