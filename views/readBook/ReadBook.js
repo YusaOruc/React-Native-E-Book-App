@@ -1,8 +1,15 @@
 import React, { useState, useRef, useEffect } from "react";
-import { FlatList, Image, StyleSheet, ActivityIndicator } from "react-native";
+import {
+  FlatList,
+  View,
+  Text,
+  StyleSheet,
+  ActivityIndicator,
+} from "react-native";
 import { ViewComponent } from "../../components/ViewComponent";
 import { TextComponent } from "../../components/TextComponent";
 import * as Progress from "react-native-progress";
+import BookItem from "../../components/BookItem";
 
 const dummyData = [
   {
@@ -383,6 +390,21 @@ const ReadBook = () => {
           }
           onEndReached={loadMoreData}
           onEndReachedThreshold={0.5}
+          ListHeaderComponent={
+            <View
+              style={{
+                alignItems: "center",
+              }}
+            >
+              <BookItem
+                item={{
+                  path: require("../../assets/bookIcons/d.png"),
+                  name: "Pride and Prejudice",
+                  author: "Jane Austen",
+                }}
+              />
+            </View>
+          }
         />
       </ViewComponent>
       <ViewComponent style={{ ...styles.progress }}>
