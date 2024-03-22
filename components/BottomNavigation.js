@@ -9,6 +9,7 @@ import ReadBook from "../views/readBook/ReadBook";
 import Settings from "../views/settings/Settings";
 import { Image, StyleSheet } from "react-native";
 import FavoriteBooks from "../views/favorite/FavoriteBooks";
+import AudioPlayer from "../views/audioPlayer/AudioPlayer";
 
 const Tab = createBottomTabNavigator();
 
@@ -54,6 +55,7 @@ export default function BottomNavigation() {
         <Tab.Screen name="FavoriteBooks" component={FavoriteBooks} />
         <Tab.Screen name="ReadBook" component={ReadBook} />
         <Tab.Screen name="Profile" component={Settings} />
+        <Tab.Screen name="AudioPlayer" component={AudioPlayer} />
       </Tab.Navigator>
     </NavigationContainer>
   );
