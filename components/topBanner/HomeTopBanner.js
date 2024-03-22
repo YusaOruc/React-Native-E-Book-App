@@ -9,9 +9,8 @@ import {
 } from "react-native";
 import { useGlobalState } from "../../context/GlobalStateContext";
 import useTheme from "../../hooks/useTheme";
-import { Ionicons } from "@expo/vector-icons";
 
-const TopBanner = ({ navigation }) => {
+const HomeTopBanner = () => {
   const { isDarkMode, toggleDarkMode } = useGlobalState();
   const { getTheme } = useTheme();
 
@@ -22,15 +21,6 @@ const TopBanner = ({ navigation }) => {
         backgroundColor: getTheme().backgroundColor,
       }}
     >
-      <View>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Ionicons
-            name="arrow-back"
-            size={25}
-            color={isDarkMode ? "#ffffff" : "#000000"}
-          />
-        </TouchableOpacity>
-      </View>
       <View style={styles.darkModeContainer}>
         <TouchableOpacity onPress={toggleDarkMode}>
           <Image
@@ -50,7 +40,7 @@ const TopBanner = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "flex-end",
     alignItems: "center",
     paddingTop: 35,
     padding: 10,
@@ -93,4 +83,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TopBanner;
+export default HomeTopBanner;

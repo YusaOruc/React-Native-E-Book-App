@@ -7,10 +7,13 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 import ReadBook from "../views/readBook/ReadBook";
 import Settings from "../views/settings/Settings";
-import { Image, StyleSheet } from "react-native";
+import { Image, StyleSheet, Button, Text } from "react-native";
 import FavoriteBooks from "../views/favorite/FavoriteBooks";
 import AudioPlayer from "../views/audioPlayer/AudioPlayer";
 import { createStackNavigator } from "@react-navigation/stack";
+import TopBanner from "./topBanner/TopBanner";
+import { TextComponent } from "./TextComponent";
+import HomeTopBanner from "./topBanner/HomeTopBanner";
 
 const Tab = createBottomTabNavigator();
 
@@ -20,10 +23,28 @@ const Stack = createStackNavigator();
 export const StackNavigator = () => (
   <NavigationContainer>
     <Stack.Navigator>
-      <Stack.Screen name="BottomNavigation" component={BottomNavigation} />
+      <Stack.Screen
+        name="BottomNavigation"
+        component={BottomNavigation}
+        options={{
+          header: HomeTopBanner,
+        }}
+      />
       <Stack.Screen name="Home" component={Home} />
-      <Stack.Screen name="ReadBook" component={ReadBook} />
-      <Stack.Screen name="AudioPlayer" component={AudioPlayer} />
+      <Stack.Screen
+        name="ReadBook"
+        component={ReadBook}
+        options={{
+          header: TopBanner,
+        }}
+      />
+      <Stack.Screen
+        name="AudioPlayer"
+        component={AudioPlayer}
+        options={{
+          header: TopBanner,
+        }}
+      />
       {/* İstediğiniz kadar sayfayı ekleyin */}
     </Stack.Navigator>
   </NavigationContainer>

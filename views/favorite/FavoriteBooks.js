@@ -40,7 +40,7 @@ const FavoriteBooks = () => {
         renderItem={BookItem}
         keyExtractor={(item, index) => index.toString()}
         contentContainerStyle={{ padding: 5 }}
-        showsHorizontalScrollIndicator={false} // Scroll bar'ı gizler
+        showsVerticalScrollIndicator={false} // Scroll bar'ı gizler
         numColumns={2}
       />
     </ViewComponent>

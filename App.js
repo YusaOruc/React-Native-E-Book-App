@@ -10,7 +10,7 @@ export default function App() {
   return (
     <GlobalStateProvider>
       <SafeAreaViewComponent>
-        <TopBanner />
+        {/* <TopBanner /> */}
         <StackNavigator />
       </SafeAreaViewComponent>
     </GlobalStateProvider>
