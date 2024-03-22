@@ -10,54 +10,66 @@ import Settings from "../views/settings/Settings";
 import { Image, StyleSheet } from "react-native";
 import FavoriteBooks from "../views/favorite/FavoriteBooks";
 import AudioPlayer from "../views/audioPlayer/AudioPlayer";
+import { createStackNavigator } from "@react-navigation/stack";
 
 const Tab = createBottomTabNavigator();
+
+const Stack = createStackNavigator();
+
+// Ana Navigasyon Yapınızın Dışında Stack Navigator Oluşturun
+export const StackNavigator = () => (
+  <NavigationContainer>
+    <Stack.Navigator>
+      <Stack.Screen name="BottomNavigation" component={BottomNavigation} />
+      <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="ReadBook" component={ReadBook} />
+      <Stack.Screen name="AudioPlayer" component={AudioPlayer} />
+      {/* İstediğiniz kadar sayfayı ekleyin */}
+    </Stack.Navigator>
+  </NavigationContainer>
+);
 
 export default function BottomNavigation() {
   const { getTheme } = useTheme();
   return (
-    <NavigationContainer>
-      <Tab.Navigator
-        screenOptions={({ route }) => ({
-          tabBarIcon: ({ focused, color, size }) => {
-            let iconName;
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
 
-            if (route.name === "Home") {
-              iconName = focused ? "home" : "home-outline";
-            } else if (route.name === "FavoriteBooks") {
-              iconName = focused ? "heart" : "heart-outline";
-            } else if (route.name === "ReadBook") {
-              iconName = focused ? "book" : "book-outline";
-            } else if (route.name === "Profile") {
-              return (
-                <Image
-                  source={{ uri: "https://i.pravatar.cc/200" }}
-                  style={{
-                    ...styles.avatar,
-                    borderWidth: focused ? 2 : undefined,
-                    borderColor: focused ? "#D45555" : undefined,
-                  }}
-                />
-              );
-            }
+          if (route.name === "Home") {
+            iconName = focused ? "home" : "home-outline";
+          } else if (route.name === "FavoriteBooks") {
+            iconName = focused ? "heart" : "heart-outline";
+          } else if (route.name === "ReadBook") {
+            iconName = focused ? "book" : "book-outline";
+          } else if (route.name === "Profile") {
+            return (
+              <Image
+                source={{ uri: "https://i.pravatar.cc/200" }}
+                style={{
+                  ...styles.avatar,
+                  borderWidth: focused ? 2 : undefined,
+                  borderColor: focused ? "#D45555" : undefined,
+                }}
+              />
+            );
+          }
 
-            return <Ionicons name={iconName} size={size} color={color} />;
-          },
-          tabBarShowLabel: false, // Label'ı kaldır
-          headerShown: false, // Ekran başlığını ve geri düğmesini gizler
-          tabBarStyle: {
-            backgroundColor: getTheme().bottomNavigation, // Arka plan rengi
-          },
-          tabBarActiveTintColor: "#F38181",
-        })}
-      >
-        <Tab.Screen name="Home" component={Home} />
-        <Tab.Screen name="FavoriteBooks" component={FavoriteBooks} />
-        <Tab.Screen name="ReadBook" component={ReadBook} />
-        <Tab.Screen name="Profile" component={Settings} />
-        <Tab.Screen name="AudioPlayer" component={AudioPlayer} />
-      </Tab.Navigator>
-    </NavigationContainer>
+          return <Ionicons name={iconName} size={size} color={color} />;
+        },
+        tabBarShowLabel: false, // Label'ı kaldır
+        headerShown: false, // Ekran başlığını ve geri düğmesini gizler
+        tabBarStyle: {
+          backgroundColor: getTheme().bottomNavigation, // Arka plan rengi
+        },
+        tabBarActiveTintColor: "#F38181",
+      })}
+    >
+      <Tab.Screen name="Home" component={Home} />
+      <Tab.Screen name="FavoriteBooks" component={FavoriteBooks} />
+      <Tab.Screen name="Profile" component={Settings} />
+    </Tab.Navigator>
   );
 }
 

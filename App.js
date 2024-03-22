@@ -2,14 +2,16 @@ import { SafeAreaView, StyleSheet, Text, View } from "react-native";
 import { GlobalStateProvider } from "./context/GlobalStateContext";
 import { SafeAreaViewComponent } from "./components/SafeAreaViewComponent";
 import TopBanner from "./components/topBanner/TopBanner";
-import BottomNavigation from "./components/BottomNavigation";
+import BottomNavigation, {
+  StackNavigator,
+} from "./components/BottomNavigation";
 import PagesNavigation from "./components/PagesNavigation";
 export default function App() {
   return (
     <GlobalStateProvider>
       <SafeAreaViewComponent>
         <TopBanner />
-        <BottomNavigation />
+        <StackNavigator />
       </SafeAreaViewComponent>
     </GlobalStateProvider>
   );

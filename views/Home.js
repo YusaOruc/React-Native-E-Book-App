@@ -11,11 +11,12 @@ import BookList from "./home/BookList";
 import { ViewComponent } from "../components/ViewComponent";
 import React, { useCallback, useRef, useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
 export default function Home() {
   const scrollViewRef = useRef(null);
   const [showToTopButton, setShowToTopButton] = useState(false);
-
+  const navigation = useNavigation();
   const handleScroll = (event) => {
     const offsetY = event.nativeEvent.contentOffset.y;
     if (offsetY > 0) {
@@ -37,6 +38,9 @@ export default function Home() {
         onScroll={handleScroll}
         scrollEventThrottle={16}
       >
+        <TouchableOpacity onPress={() => navigation.navigate("ReadBook")}>
+          <TextComponent>Lorem Ipsum</TextComponent>
+        </TouchableOpacity>
         <ViewComponent style={styles.container}>
           <TextComponent>Lorem Ipsum</TextComponent>
           <BookList />
