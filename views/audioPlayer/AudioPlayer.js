@@ -4,8 +4,7 @@ import { Audio } from "expo-av";
 import { TextComponent } from "../../components/TextComponent";
 import { ViewComponent } from "../../components/ViewComponent";
 import { Ionicons } from "@expo/vector-icons";
-import Slider from "react-native-slider";
-
+import { Slider } from "@miblanchard/react-native-slider";
 const AudioPlayer = () => {
   const [sound, setSound] = useState();
   const [isPlaying, setIsPlaying] = useState(false);
@@ -113,6 +112,14 @@ const AudioPlayer = () => {
 export default AudioPlayer;
 
 const styles = StyleSheet.create({
+  slider: {
+    flex: 1,
+    marginLeft: 10,
+    marginRight: 10,
+    alignItems: "stretch",
+    justifyContent: "center",
+    borderWidth: 1,
+  },
   avatar: {
     width: "80%",
     height: "90%",
