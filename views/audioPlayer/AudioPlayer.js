@@ -70,8 +70,8 @@ const AudioPlayer = () => {
           source={require("../../assets/bookIcons/d.png")}
           style={styles.avatar}
         />
-        <TextComponent>"Pride and Prejudice"</TextComponent>
-        <TextComponent style={styles.span}>"Jane Austen"</TextComponent>
+        <TextComponent>Pride and Prejudice</TextComponent>
+        <TextComponent style={styles.span}>Jane Austen</TextComponent>
       </View>
       <View style={styles.progressBarContainer}>
         <View style={styles.progressBar}>
