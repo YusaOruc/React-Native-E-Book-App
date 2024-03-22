@@ -4,12 +4,14 @@ import { Audio } from "expo-av";
 import { TextComponent } from "../../components/TextComponent";
 import { ViewComponent } from "../../components/ViewComponent";
 import { Ionicons } from "@expo/vector-icons";
+import Slider from "react-native-slider";
 
 const AudioPlayer = () => {
   const [sound, setSound] = useState();
   const [isPlaying, setIsPlaying] = useState(false);
   const [positionMillis, setPositionMillis] = useState(0);
   const [durationMillis, setDurationMillis] = useState(0);
+  const [value, setValue] = useState(0);
 
   useEffect(() => {
     loadSound();
@@ -56,13 +58,20 @@ const AudioPlayer = () => {
     );
     await sound.setPositionAsync(newPosition);
   };
-
+  const changeSlider = async (value) => {
+    const newPosition = value * durationMillis;
+    setPositionMillis(newPosition);
+    await sound.setPositionAsync(newPosition);
+  };
   const formatTime = (timeMillis) => {
     const minutes = Math.floor(timeMillis / 60000);
     const seconds = ((timeMillis % 60000) / 1000).toFixed(0);
     return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
   };
-
+  let sliderValue =
+    (positionMillis / durationMillis) * 100
+      ? ((positionMillis / durationMillis) * 100) / 100
+      : 0;
   return (
     <ViewComponent>
       <View style={styles.card}>
@@ -75,13 +84,7 @@ const AudioPlayer = () => {
       </View>
       <View style={styles.progressBarContainer}>
         <View style={styles.progressBar}>
-          <View
-            style={{
-              width: `${(positionMillis / durationMillis) * 100}%`,
-              backgroundColor: "#D45555",
-              height: 5,
-            }}
-          />
+          <Slider value={sliderValue} onValueChange={(v) => changeSlider(v)} />
           <View style={styles.indicatorContainer}>
             <TextComponent>{formatTime(positionMillis)}</TextComponent>
             <TextComponent>{formatTime(durationMillis)}</TextComponent>
@@ -128,15 +131,10 @@ const styles = StyleSheet.create({
   },
   progressBarContainer: {
     width: "80%",
-    backgroundColor: "#DDD",
-    height: 5,
     alignSelf: "center",
   },
   progressBar: {
     width: "100%",
-    backgroundColor: "#DDD",
-    height: 5,
-    position: "relative",
   },
   indicatorContainer: {
     flexDirection: "row",
