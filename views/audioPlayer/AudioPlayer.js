@@ -4,7 +4,6 @@ import { Audio } from "expo-av";
 import { TextComponent } from "../../components/TextComponent";
 import { ViewComponent } from "../../components/ViewComponent";
 import { Ionicons } from "@expo/vector-icons";
-import ProgressBar from "../../components/ProgressBar";
 
 const AudioPlayer = () => {
   const [sound, setSound] = useState();
@@ -58,6 +57,12 @@ const AudioPlayer = () => {
     await sound.setPositionAsync(newPosition);
   };
 
+  const formatTime = (timeMillis) => {
+    const minutes = Math.floor(timeMillis / 60000);
+    const seconds = ((timeMillis % 60000) / 1000).toFixed(0);
+    return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+  };
+
   return (
     <ViewComponent>
       <View style={styles.card}>
@@ -77,9 +82,12 @@ const AudioPlayer = () => {
               height: 5,
             }}
           />
+          <View style={styles.indicatorContainer}>
+            <TextComponent>{formatTime(positionMillis)}</TextComponent>
+            <TextComponent>{formatTime(durationMillis)}</TextComponent>
+          </View>
         </View>
       </View>
-      <ProgressBar progress={`${(positionMillis / durationMillis) * 100}%`} />
       <View style={styles.controlsContainer}>
         <TouchableOpacity onPress={skipBackward}>
           <Ionicons name="play-back-circle" size={40} color="#D45555" />
@@ -128,6 +136,15 @@ const styles = StyleSheet.create({
     width: "100%",
     backgroundColor: "#DDD",
     height: 5,
+    position: "relative",
+  },
+  indicatorContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingHorizontal: 10,
+    position: "absolute",
+    top: -20,
+    width: "100%",
   },
   span: {
     fontSize: 10,
