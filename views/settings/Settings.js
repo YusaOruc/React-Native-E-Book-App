@@ -5,12 +5,12 @@ import {
   View,
   Image,
   SectionList,
-  StatusBar,
+  TouchableOpacity,
+  TouchableOpacityBase,
 } from "react-native";
 import { SafeAreaViewComponent } from "../../components/SafeAreaViewComponent";
 import { TextComponent } from "../../components/TextComponent";
 import { Ionicons } from "@expo/vector-icons";
-import useTheme from "../../hooks/useTheme";
 import { useGlobalState } from "../../context/GlobalStateContext";
 
 const DATA = [
@@ -25,8 +25,12 @@ const DATA = [
 ];
 
 export default function Settings() {
-  const { isDarkMode, toggleDarkMode } = useGlobalState();
+  const { isDarkMode, toggleDarkMode, isAuthenticated, handleAuthenticated } =
+    useGlobalState();
 
+  const logOut = () => {
+    handleAuthenticated();
+  };
   return (
     <SafeAreaViewComponent style={styles.container}>
       <View
@@ -65,6 +69,16 @@ export default function Settings() {
           <TextComponent style={styles.header}>{title}</TextComponent>
         )}
       />
+      <View style={styles.item}>
+        <TouchableOpacity
+          onPress={logOut}
+          style={{
+            alignItems: "center",
+          }}
+        >
+          <TextComponent style={styles.title}>Exit</TextComponent>
+        </TouchableOpacity>
+      </View>
     </SafeAreaViewComponent>
   );
 }

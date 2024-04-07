@@ -13,11 +13,20 @@ export const GlobalStateProvider = ({ children }) => {
     // Dark mode'un açılması/kapanmasıyla ilgili gerekli işlemleri burada gerçekleştirebilirsiniz
   };
 
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  const handleAuthenticated = () => {
+    setIsAuthenticated(!isAuthenticated);
+    // State to track authentication
+  };
+
   return (
     <GlobalStateContext.Provider
       value={{
         isDarkMode,
         toggleDarkMode,
+        isAuthenticated,
+        handleAuthenticated,
       }}
     >
       {children}

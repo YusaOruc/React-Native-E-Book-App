@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Home from "../views/Home";
 import { NavigationContainer } from "@react-navigation/native";
 import useTheme from "../hooks/useTheme";
@@ -13,48 +13,73 @@ import { createStackNavigator } from "@react-navigation/stack";
 import TopBanner from "./topBanner/TopBanner";
 import HomeTopBanner from "./topBanner/HomeTopBanner";
 import BookDetail from "../views/bookDetail/BookDetail";
+import Login from "../views/login/Login";
+import { useGlobalState } from "../context/GlobalStateContext";
+import Register from "../views/login/Register";
 
 const Tab = createBottomTabNavigator();
 
 const Stack = createStackNavigator();
 
-// Ana Navigasyon Yapınızın Dışında Stack Navigator Oluşturun
-export const StackNavigator = () => (
-  <NavigationContainer>
-    <Stack.Navigator>
-      <Stack.Screen
-        name="BottomNavigation"
-        component={BottomNavigation}
-        options={{
-          header: HomeTopBanner,
-        }}
-      />
-      <Stack.Screen name="Home" component={Home} />
-      <Stack.Screen
-        name="ReadBook"
-        component={ReadBook}
-        options={{
-          header: TopBanner,
-        }}
-      />
-      <Stack.Screen
-        name="AudioPlayer"
-        component={AudioPlayer}
-        options={{
-          header: TopBanner,
-        }}
-      />
-      <Stack.Screen
-        name="BookDetail"
-        component={BookDetail}
-        options={{
-          header: TopBanner,
-        }}
-      />
-      {/* İstediğiniz kadar sayfayı ekleyin */}
-    </Stack.Navigator>
-  </NavigationContainer>
-);
+export const StackNavigator = () => {
+  const { isAuthenticated } = useGlobalState();
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        {isAuthenticated ? (
+          <>
+            <Stack.Screen
+              name="BottomNavigation"
+              component={BottomNavigation}
+              options={{
+                header: HomeTopBanner,
+              }}
+            />
+            <Stack.Screen name="Home" component={Home} />
+            <Stack.Screen
+              name="ReadBook"
+              component={ReadBook}
+              options={{
+                header: TopBanner,
+              }}
+            />
+            <Stack.Screen
+              name="AudioPlayer"
+              component={AudioPlayer}
+              options={{
+                header: TopBanner,
+              }}
+            />
+            <Stack.Screen
+              name="BookDetail"
+              component={BookDetail}
+              options={{
+                header: TopBanner,
+              }}
+            />
+          </>
+        ) : (
+          <>
+            <Stack.Screen
+              name="Login"
+              component={Login}
+              options={{
+                header: HomeTopBanner,
+              }}
+            />
+            <Stack.Screen
+              name="Register"
+              component={Register}
+              options={{
+                header: HomeTopBanner,
+              }}
+            />
+          </>
+        )}
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+};
 
 export default function BottomNavigation() {
   const { getTheme } = useTheme();
