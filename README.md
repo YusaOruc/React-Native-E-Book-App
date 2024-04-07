@@ -2,7 +2,7 @@
 
 # E-Book Mobile Application
 
-This project is a mobile application for e-books developed using React Native. This application allows users to view, read, and manage e-books.
+This project is a mobile application for e-books developed using React Native. This application allows users to view, read, listen and manage e-books.
 
 ## Features
 
