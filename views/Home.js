@@ -1,15 +1,8 @@
 import { TextComponent } from "../components/TextComponent";
-import {
-  TouchableOpacity,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
-import { SafeAreaViewComponent } from "../components/SafeAreaViewComponent";
+import { TouchableOpacity, ScrollView, StyleSheet } from "react-native";
 import BookList from "./home/BookList";
 import { ViewComponent } from "../components/ViewComponent";
-import React, { useCallback, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
@@ -38,20 +31,17 @@ export default function Home() {
         onScroll={handleScroll}
         scrollEventThrottle={16}
       >
-        <TouchableOpacity onPress={() => navigation.navigate("ReadBook")}>
-          <TextComponent>Lorem Ipsum</TextComponent>
-        </TouchableOpacity>
         <ViewComponent style={styles.container}>
           <TextComponent>Lorem Ipsum</TextComponent>
-          <BookList />
+          <BookList navigation={navigation} />
         </ViewComponent>
         <ViewComponent style={styles.container}>
           <TextComponent>Lorem Ipsum</TextComponent>
-          <BookList />
+          <BookList navigation={navigation} />
         </ViewComponent>
         <ViewComponent style={styles.container}>
           <TextComponent>Lorem Ipsum</TextComponent>
-          <BookList />
+          <BookList navigation={navigation} />
         </ViewComponent>
       </ScrollView>
       {showToTopButton && (

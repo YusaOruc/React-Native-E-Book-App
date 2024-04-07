@@ -1,16 +1,24 @@
 import { View, TouchableOpacity, Image, StyleSheet, Text } from "react-native";
 import { TextComponent } from "./TextComponent";
+import { useNavigation } from "@react-navigation/native";
 
-const BookItem = ({ item }) => (
-  <TouchableOpacity onPress={() => console.log("1df")}>
-    <View style={{ ...styles.card }}>
-      <Image source={item.path} style={styles.avatar} />
-      <TextComponent>{item.name}</TextComponent>
-      <TextComponent style={{ ...styles.span }}>{item.author}</TextComponent>
-    </View>
-  </TouchableOpacity>
-);
+// navigation.push('Details', {
+//   itemId: Math.floor(Math.random() * 100),
+// })
 
+export default function BookItem({ item, navigation }) {
+  return (
+    <TouchableOpacity
+      onPress={() => navigation.navigate("BookDetail", { book: item })}
+    >
+      <View style={{ ...styles.card }}>
+        <Image source={item.path} style={styles.avatar} />
+        <TextComponent>{item.name}</TextComponent>
+        <TextComponent style={{ ...styles.span }}>{item.author}</TextComponent>
+      </View>
+    </TouchableOpacity>
+  );
+}
 const styles = StyleSheet.create({
   container: {
     padding: 10,
@@ -33,5 +41,3 @@ const styles = StyleSheet.create({
     fontWeight: "300", // normal veya light font ağırlığı
   },
 });
-
-export default BookItem;

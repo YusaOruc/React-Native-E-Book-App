@@ -3,7 +3,7 @@ import { View, FlatList, Image, StyleSheet, Text } from "react-native";
 import { TextComponent } from "../../components/TextComponent";
 import BookItem from "../../components/BookItem";
 
-const dummyData = [
+export const books = [
   {
     path: require("../../assets/bookIcons/a.png"),
     name: "To Kill a Mockingbird",
@@ -31,12 +31,14 @@ const dummyData = [
   },
 ];
 
-const BookList = () => {
+const BookList = ({ navigation }) => {
   return (
     <FlatList
-      data={dummyData}
+      data={books}
       horizontal
-      renderItem={BookItem}
+      renderItem={({ item }) => (
+        <BookItem item={item} navigation={navigation} />
+      )}
       keyExtractor={(item, index) => index.toString()}
       contentContainerStyle={{ padding: 5 }}
       showsHorizontalScrollIndicator={false} // Scroll bar'ı gizler

@@ -5,13 +5,12 @@ import { TextComponent } from "../../components/TextComponent";
 import { ViewComponent } from "../../components/ViewComponent";
 import { Ionicons } from "@expo/vector-icons";
 import { Slider } from "@miblanchard/react-native-slider";
-const AudioPlayer = () => {
+const AudioPlayer = ({ route }) => {
   const [sound, setSound] = useState();
   const [isPlaying, setIsPlaying] = useState(false);
   const [positionMillis, setPositionMillis] = useState(0);
   const [durationMillis, setDurationMillis] = useState(0);
-  const [value, setValue] = useState(0);
-
+  const { book } = route.params;
   useEffect(() => {
     loadSound();
 
@@ -72,14 +71,11 @@ const AudioPlayer = () => {
       ? ((positionMillis / durationMillis) * 100) / 100
       : 0;
   return (
-    <ViewComponent>
+    <ViewComponent style={{ paddingBottom: 30 }}>
       <View style={styles.card}>
-        <Image
-          source={require("../../assets/bookIcons/d.png")}
-          style={styles.avatar}
-        />
-        <TextComponent>Pride and Prejudice</TextComponent>
-        <TextComponent style={styles.span}>Jane Austen</TextComponent>
+        <Image source={book.path} style={styles.avatar} />
+        <TextComponent>{book.name}</TextComponent>
+        <TextComponent style={styles.span}>{book.author}</TextComponent>
       </View>
       <View style={styles.progressBarContainer}>
         <View style={styles.progressBar}>
@@ -112,18 +108,9 @@ const AudioPlayer = () => {
 export default AudioPlayer;
 
 const styles = StyleSheet.create({
-  slider: {
-    flex: 1,
-    marginLeft: 10,
-    marginRight: 10,
-    alignItems: "stretch",
-    justifyContent: "center",
-    borderWidth: 1,
-  },
   avatar: {
-    width: "80%",
-    height: "90%",
-    marginBottom: 3,
+    width: "90%",
+    height: "80%",
     borderRadius: 20,
   },
   card: {

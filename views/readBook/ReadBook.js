@@ -302,7 +302,7 @@ const dummyData = [
   },
 ];
 
-const ReadBook = () => {
+const ReadBook = ({ route }) => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
   const [sayfaNo, setSayfaNo] = useState(4);
@@ -310,7 +310,7 @@ const ReadBook = () => {
   const [firstFocusDone, setFirstFocusDone] = useState(false);
   const [pageLoad, setPageLoad] = useState(false);
   const flatListRef = useRef(null);
-
+  const { book } = route.params;
   useEffect(() => {
     if (pageLoad) return;
     loadPages();
@@ -398,9 +398,9 @@ const ReadBook = () => {
             >
               <BookItem
                 item={{
-                  path: require("../../assets/bookIcons/d.png"),
-                  name: "Pride and Prejudice",
-                  author: "Jane Austen",
+                  path: book.path,
+                  name: book.name,
+                  author: book.author,
                 }}
               />
             </View>

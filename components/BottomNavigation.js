@@ -1,5 +1,4 @@
 import React from "react";
-import Middle from "../views/readBook/Middle";
 import Home from "../views/Home";
 import { NavigationContainer } from "@react-navigation/native";
 import useTheme from "../hooks/useTheme";
@@ -12,8 +11,8 @@ import FavoriteBooks from "../views/favorite/FavoriteBooks";
 import AudioPlayer from "../views/audioPlayer/AudioPlayer";
 import { createStackNavigator } from "@react-navigation/stack";
 import TopBanner from "./topBanner/TopBanner";
-import { TextComponent } from "./TextComponent";
 import HomeTopBanner from "./topBanner/HomeTopBanner";
+import BookDetail from "../views/bookDetail/BookDetail";
 
 const Tab = createBottomTabNavigator();
 
@@ -41,6 +40,13 @@ export const StackNavigator = () => (
       <Stack.Screen
         name="AudioPlayer"
         component={AudioPlayer}
+        options={{
+          header: TopBanner,
+        }}
+      />
+      <Stack.Screen
+        name="BookDetail"
+        component={BookDetail}
         options={{
           header: TopBanner,
         }}
