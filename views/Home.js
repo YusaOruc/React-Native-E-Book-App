@@ -32,15 +32,15 @@ export default function Home() {
         scrollEventThrottle={16}
       >
         <ViewComponent style={styles.container}>
-          <TextComponent>Lorem Ipsum</TextComponent>
+          <TextComponent>Mystery and Detective</TextComponent>
           <BookList navigation={navigation} />
         </ViewComponent>
         <ViewComponent style={styles.container}>
-          <TextComponent>Lorem Ipsum</TextComponent>
+          <TextComponent>Fantasy</TextComponent>
           <BookList navigation={navigation} />
         </ViewComponent>
         <ViewComponent style={styles.container}>
-          <TextComponent>Lorem Ipsum</TextComponent>
+          <TextComponent>Classic Literature</TextComponent>
           <BookList navigation={navigation} />
         </ViewComponent>
       </ScrollView>
