@@ -10,12 +10,13 @@ import { useNavigation } from "@react-navigation/native";
 import { ViewComponent } from "../../components/ViewComponent";
 import { TextComponent } from "../../components/TextComponent";
 import { Ionicons } from "@expo/vector-icons";
+import { useState } from "react";
 
 //onPress={() => navigation.navigate("ReadBook")} <FontAwesome name="file-audio-o" size={24} color="black" />
 export default function BookDetail({ route }) {
   const navigation = useNavigation();
   const { book } = route.params;
-
+  const [fav, setFav] = useState(false);
   return (
     <ViewComponent
       style={{
@@ -54,10 +55,24 @@ export default function BookDetail({ route }) {
           <TextComponent>Listen</TextComponent>
         </TouchableOpacity>
       </View>
+      <TouchableOpacity style={styles.button}>
+        <Ionicons
+          onPress={() => setFav(!fav)}
+          name={fav ? "heart" : "heart-outline"}
+          size={30}
+          color="red"
+        />
+      </TouchableOpacity>
     </ViewComponent>
   );
 }
 const styles = StyleSheet.create({
+  button: {
+    position: "absolute",
+    top: 30,
+    right: 30,
+    borderRadius: 5,
+  },
   container: {
     padding: 10,
   },
